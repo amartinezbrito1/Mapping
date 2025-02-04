@@ -25,24 +25,32 @@ Input: nums = [3,3], target = 6
 Output: [0,1]
 */
 
+import java.util.Map;
+import java.util.HashMap;
 
-class Solution {
+public class Solution {
     public int[] twoSum(int[] nums, int target) {
-    //map to store our numbers after first itiration thru the array
-    Map<Integer, Integer> map = new HashMap<>();
-    for(int i =0;i<nums.lenght;i++)
-    {
-        //math solution is: current + x = target
-        //x = target - current
-        int x = target - cur;
-        if (map.containsKey(x)) {
-            return new int[]{map.get(x), i};
-
+        // map to store our numbers after first iteration thru the array
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            // math solution is: current + x = target
+            // x = target - current
+            int x = target - nums[i]; // Changed 'cur' to 'nums[i]'
+            if (map.containsKey(x)) {
+                return new int[] { map.get(x), i };
+            }
+            // if above statement is false just keep storing the values|index to the map
+            // value, index(seen)
+            map.put(nums[i], i); // Changed 'cur' to 'nums[i]'
         }
-        //if above statement is false just keep storing the values|index to the map
-            //value. index(seen)
-        map.put(cur, i);
+        return null;
     }
-    return null;
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] nums = { 2, 7, 11, 15 };
+        int target = 9;
+        int[] result = solution.twoSum(nums, target);
+        System.out.println(java.util.Arrays.toString(result));
     }
 }
